@@ -1,0 +1,440 @@
+openapi: 3.0.0
+info:
+  title: Airplane_Crashes_and_Fatalities_Since_1908
+  description: Airplane_Crashes_and_Fatalities_Since_1908
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/1510/Airplane_Crashes_and_Fatalities_Since_1908/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://webservice_booksapps.netlify.org
+  description: web service published on netlify
+paths:
+  /crash/{crashId}/flight:
+    get:
+      summary: get flight by crash id
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+    post:
+      summary: links a flight and a crash
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: crash data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateId'
+        required: true
+      responses:
+        "200":
+          description: OK
+  /crash/{crashId}/statistic:
+    get:
+      summary: get statistic by crash id
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statistic'
+    post:
+      summary: links a statistic and a crash
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: crash data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateId'
+        required: true
+      responses:
+        "200":
+          description: OK
+  /crash/{crashId}/flight/{flightId}:
+    delete:
+      summary: Delete a crash-flight link.
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: flightId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /crash/{crashId}/statistic/{statisticId}:
+    delete:
+      summary: Delete a crash-statistic link.
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: statisticId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /crash/{crashId}:
+    get:
+      summary: Returns a crash by ID.
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Crash'
+    put:
+      summary: Update crash information
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: crash data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Crash'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Delete a crash by ID.
+      parameters:
+      - name: crashId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /crash/:
+    get:
+      summary: Get all crashes
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayofCrashes'
+    post:
+      summary: Create a new crash
+      requestBody:
+        description: Crash data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Crash'
+        required: true
+      responses:
+        "200":
+          description: OK
+  /flight/{flightId}:
+    get:
+      summary: Returns a flight by ID.
+      parameters:
+      - name: flightId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+    put:
+      summary: Update flight information
+      parameters:
+      - name: flightId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Author data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flight'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Delete a flight by ID.
+      parameters:
+      - name: flightId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /flight/:
+    get:
+      summary: Get all flights
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayofFlights'
+    post:
+      summary: Create a new flight
+      requestBody:
+        description: flight data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flight'
+        required: true
+      responses:
+        "200":
+          description: OK
+  /Statistic/{statisticId}:
+    get:
+      summary: Returns a statistic by ID.
+      parameters:
+      - name: statisticId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statistic'
+    put:
+      summary: Update statistic information
+      parameters:
+      - name: statisticId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: statistic data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Statistic'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Delete a statistic by ID.
+      parameters:
+      - name: statisticId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /statistic/:
+    get:
+      summary: Get all statistic
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayofStatistics'
+    post:
+      summary: Create a new statistic
+      requestBody:
+        description: statistic data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Statistic'
+        required: true
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    TemplateId:
+      type: object
+      properties:
+        id:
+          type: string
+    Crash:
+      type: object
+      properties:
+        crashId:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        location:
+          type: string
+        sumary:
+          type: string
+      example:
+        crashId: "1"
+        date: 09/17/1908
+        time: 17:18
+        location: Fort Myer; Virginia
+        sumary: During a demonstration flight
+    Flight:
+      type: object
+      properties:
+        flightId:
+          type: string
+        crashId:
+          type: string
+        operator:
+          type: string
+        flight:
+          type: string
+        route:
+          type: string
+        type:
+          type: string
+        registration:
+          type: string
+      example:
+        flightId: 1
+        crashId: 1
+        operator: Military - U.S. Army
+        flight: na
+        route: Demonstration
+        type: Wright Flyer III
+        registration: III
+    Statistic:
+      type: object
+      properties:
+        statisticId:
+          type: string
+        crashId:
+          type: string
+        aboard:
+          type: string
+        fatalities:
+          type: string
+        ground:
+          type: string
+      example:
+        statisticId: 1
+        crashId: 1
+        name: 1
+        aboard: 1
+        fatalities: 1
+        ground: 1
+    ArrayofCrashes:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          $ref: '#/components/schemas/Crash'
+      x-schema-name: ArrayofCrashes
+    ArrayofFlights:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          $ref: '#/components/schemas/Flight'
+      x-schema-name: ArrayofFlights
+    ArrayofStatistics:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          $ref: '#/components/schemas/Statistic'
+      x-schema-name: ArrayofStatistics
